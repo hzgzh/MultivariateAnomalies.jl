@@ -583,7 +583,7 @@ Large Distances to the nearest center are anomalies. data: Observations * Variab
 
 """
 function Dist2Centers(data::AbstractArray{tp,2}, centers::AbstractArray{tp,2}) where {tp}
-  (minD, minDIdx) = findmin(pairwise(Euclidean(), data', centers'), 2)
+  (minD, minDIdx) = findmin(StatsBase.pairwise(Euclidean(), data', centers'), 2)
   clustassgin = zeros(Int, size(data, 1))
   for i = 1:size(data, 1)
     (u, clustassgin[i]) = ind2sub((size(data, 1), size(centers, 1)), minDIdx[i])
